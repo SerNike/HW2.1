@@ -1,13 +1,8 @@
 package com.skypro.HW21.transport;
 
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -15,36 +10,18 @@ public class Car {
     private boolean tires;
     private Key key;
 
-
-    public static final String defaultBrand = "default";
-    public static final String defaultModel = "default";
     public static final double defaultEngineVolume = 1.5;
-    public static final String defaultColor = "Белый";
-    public static final int defaultYear = 2000;
     public static final int defaultNumberOfSeats = 5;
     public static final String defaultBodyType = "тип кузова";
     public static final String defaultTransmission = "1";
     public static final String defaultRegistrationNumber = "a111aa";
 
-    public Car(String brand, String model, double engineVolume, String color, int year, String country,
+    public Car(String brand, String model,int year, String country,String color, int maxSpeed, double engineVolume,
                String bodyType, int numberOfSeats,String transmission, String registrationNumber,
                boolean tires, boolean RemoteEngineStart, boolean KeylessAccess) {
+        super(brand, model,year,country,color, maxSpeed);
 
-        if (brand == null || brand.isBlank()) {
-            this.brand = defaultBrand;
-        } else {
-            this.brand = brand;
-        }
-        if (model == null || model.isBlank()) {
-            this.model = defaultModel;
-        } else {
-            this.model = model;
-        }
-        if (year <= 0){
-            this.year = 2000;
-        } else {
-            this.year = defaultYear;
-        }
+
         if (bodyType == null || bodyType.isBlank()) {
             this.bodyType = defaultBodyType;
         } else {
@@ -55,10 +32,9 @@ public class Car {
         } else {
             this.numberOfSeats = defaultNumberOfSeats;
         }
-        this.country = country;
+
 
         setEngineVolume(engineVolume);
-        setColor(color);
         setRegistrationNumber(registrationNumber);
         setEngineVolume(engineVolume);
         setTransmission(transmission);
@@ -84,6 +60,7 @@ public class Car {
             return KeylessAccess;
         }
 
+
         @Override
         public String toString() {
             return "Key{" +
@@ -92,15 +69,6 @@ public class Car {
                     '}';
         }
     }
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-
 
     public double getEngineVolume() {
         return engineVolume;
@@ -112,31 +80,12 @@ public class Car {
             this.engineVolume = engineVolume;
         }
     }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        if (color == null || color.isBlank()){
-            this.color = defaultColor;
-        } else {
-            this.color = color;
-        }
-    }
-
-    public int getYear() {
-        return year;
-    }
-    public String getCountry() {
-        return country;
-    }
     public String getTransmission() {
         return transmission;
     }
 
     public void setTransmission(String transmission) {
-        if (model == null || model.isBlank()){
+        if (transmission == null || transmission.isBlank()){
             this.transmission = defaultTransmission;
         } else {
             this.transmission = transmission;
@@ -152,7 +101,7 @@ public class Car {
     }
 
     public void setRegistrationNumber(String registrationNumber) {
-        if (model == null || model.isBlank()) {
+        if (registrationNumber == null || registrationNumber.isBlank()) {
             this.registrationNumber = defaultRegistrationNumber;
         } else {
             this.registrationNumber = registrationNumber;
@@ -184,19 +133,10 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", color='" + color + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", bodyType='" + bodyType + '\'' +
-                ", registrationNumber='" + registrationNumber + '\'' +
-                ", numberOfSeats=" + numberOfSeats +
-                ", tires=" + tires +
-                ", key=" + key +
-                '}';
+        return "Марка автомобиля: " + getBrand() + ". Модель автомобиля: " + getModel() + ". Год выпуска автомобиля: "
+                + getYear() + ". Страна производитель автомобиля: " + getCountry() + ". Цвет автомобиля: " + getColor() +
+                ". Максимальная скорость автомобиля: " + getMaxSpeed() + ". Объем двигателя: " + engineVolume + ". Тип кузова: " + bodyType + ". Количество мест: " + numberOfSeats
+                + ". Коробка передач: " + transmission + ". Регистрационный номер: " + registrationNumber + ". Шины: "
+                + tires + ". Удаленный запуск двигателя: " + key.RemoteEngineStart + ". Доступ без ключа: " + key.KeylessAccess;
     }
 }
