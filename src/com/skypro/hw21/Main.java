@@ -1,21 +1,28 @@
 package com.skypro.hw21;
 
-public class Main {
-    public static void main(String[] args) {
-        Car lada = new Car("Lada", "Granta", 1.7, "Желтый", 2015, "Россия");
-        Car audi = new Car("Audi", "A8", 3.0, "Черный", 2020, "Германия");
-        Car bmv = new Car("BMW", "Z8", 3.0, "Черный", 2021, "Германия");
-        Car kia = new Car("Kia", "Sportage",2.4, "Красный", 2018, "Южная Корея");
-        Car hyundai = new Car("Hyundai", "Avante", 1.6, "Оранжевый", 2016, "Южная Корея");
-        Car unknownCarOne = new Car( "", "", 0, "", -5, "Южная Корея");
-        Car unknownCartwo = new Car( "BMW", "Avante", 2.0, "Оранжевый", 2016, "Южная Корея");
+import com.skypro.hw21.transport.Bus;
+import com.skypro.hw21.transport.Driver.DriverB;
+import com.skypro.hw21.transport.Driver.DriverC;
+import com.skypro.hw21.transport.Driver.DriverD;
+import com.skypro.hw21.transport.PassengerCar;
+import com.skypro.hw21.transport.Transport;
+import com.skypro.hw21.transport.Truck;
 
-        System.out.println(lada);
-        System.out.println(audi);
-        System.out.println(bmv);
-        System.out.println(kia);
-        System.out.println(hyundai);
-        System.out.println(unknownCarOne);
-        System.out.println(unknownCartwo);
+public class Main {
+    public static void main (String[] args) {
+        DriverB driverB = new DriverB("Иван Иванович Иванов", true, 5);
+        DriverC driverC = new DriverC("Петр Петрович Петров", true, 2);
+        DriverD driverD = new DriverD("Роман романович Романов", true, 1);
+        PassengerCar passengerCar = new PassengerCar("BMV", "E6", 3.0, driverB);
+        Truck truck = new Truck("Камаз", "6520", 5.0, driverC);
+        Bus bus = new Bus("Газ", "22171", 6.0, driverD);
+
+        print(passengerCar);
+        print(truck);
+        print(bus);
+    }
+    private static void print(Transport<?> transport) {
+        System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем "
+                + transport.getBrand() + " и будет участвовать в заезде");
     }
 }
